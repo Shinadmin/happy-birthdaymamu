@@ -1,0 +1,179 @@
+/* ตั้งค่าพื้นฐาน */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #ffdae0; /* สีชมพูพาสเทล */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+    font-family: 'Itim', cursive; /* ฟอนต์ไทยน่ารักๆ */
+}
+
+/* ฟอนต์สไตล์เกมพิกเซลสำหรับภาษาอังกฤษ */
+h1, h2 {
+    font-family: 'Press Start 2P', cursive;
+    text-align: center;
+    line-height: 1.5;
+    color: #333;
+    font-size: 20px;
+}
+
+.pixel-text-red {
+    color: #ff4d4d;
+    text-shadow: 2px 2px 0px #000;
+}
+
+/* จัดการหน้าจอ */
+.screen {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.screen.active {
+    display: flex;
+}
+
+/* สไตล์ปุ่มเกมพิกเซล */
+.pixel-btn {
+    background-color: #ff4d4d;
+    color: white;
+    font-family: 'Itim', cursive;
+    font-size: 24px;
+    padding: 15px 30px;
+    border: 4px solid #000;
+    box-shadow: 4px 4px 0px #000; /* เงาแข็งๆ แบบพิกเซล */
+    cursor: pointer;
+    margin-top: 20px;
+    transition: transform 0.1s;
+}
+
+.pixel-btn:active {
+    transform: translate(4px, 4px);
+    box-shadow: 0px 0px 0px #000;
+}
+
+.heart-icon {
+    font-size: 28px;
+}
+
+/* ---------------- วาดเค้กแบบพิกเซล ---------------- */
+.cake-container {
+    position: relative;
+    margin-top: 80px;
+    margin-bottom: 30px;
+}
+
+/* เปลวไฟ */
+.flame {
+    width: 20px;
+    height: 20px;
+    background-color: #ff9800;
+    border: 3px solid #000;
+    position: absolute;
+    top: -65px;
+    left: 50%;
+    transform: translateX(-50%);
+    cursor: pointer; /* ให้รู้ว่ากดได้ */
+    animation: flicker 0.2s infinite alternate;
+    z-index: 10;
+}
+
+/* อนิเมชั่นไฟกะพริบ */
+@keyframes flicker {
+    from { background-color: #ff9800; transform: translateX(-50%) scale(1); }
+    to { background-color: #ffeb3b; transform: translateX(-50%) scale(1.1); }
+}
+
+/* ตัวเทียน */
+.candle {
+    width: 16px;
+    height: 40px;
+    background-color: #fff;
+    border: 3px solid #000;
+    position: absolute;
+    top: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-image: repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 5px,
+        #ff4d4d 5px,
+        #ff4d4d 10px
+    ); /* ลายทางสีแดง */
+}
+
+/* หน้าเค้กสีชมพู */
+.cake-icing {
+    width: 160px;
+    height: 40px;
+    background-color: #ff80ab;
+    border: 4px solid #000;
+    border-bottom: none;
+    border-radius: 5px 5px 0 0;
+}
+
+/* ฐานเค้กสีช็อกโกแลต */
+.cake-base {
+    width: 180px;
+    height: 60px;
+    background-color: #795548;
+    border: 4px solid #000;
+    border-radius: 5px;
+    margin-left: -10px; /* ขยับให้สมดุลกับหน้าเค้ก */
+}
+
+/* ข้อความใบ้ให้กดไฟ */
+.hint {
+    font-size: 18px;
+    color: #555;
+    animation: bounce 1s infinite alternate;
+}
+
+@keyframes bounce {
+    from { transform: translateY(0); }
+    to { transform: translateY(5px); }
+}
+
+/* กล่องข้อความอวยพร */
+.message-box {
+    background: white;
+    border: 4px solid #000;
+    padding: 20px 40px;
+    box-shadow: 6px 6px 0px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    font-size: 22px;
+    margin-top: 20px;
+    border-radius: 10px;
+}
+
+/* ---------------- สไตล์กรอบรูป ---------------- */
+.photo-frame {
+    margin-top: 15px;
+    background: #fff;
+    padding: 10px 10px 30px 10px; /* ขอบล่างหนาๆ ให้เหมือนโพลารอยด์ */
+    border: 4px solid #000; /* กรอบสีดำสไตล์พิกเซล */
+    box-shadow: 6px 6px 0px rgba(0, 0, 0, 0.2);
+    transform: rotate(-3deg); /* เอียงรูปนิดๆ ให้ดูขี้เล่น */
+    transition: transform 0.3s ease;
+    z-index: 10;
+}
+
+/* เอฟเฟกต์ตอนเอาเมาส์ชี้ที่รูป */
+.photo-frame:hover {
+    transform: rotate(0deg) scale(1.05); 
+}
+
+/* จัดการขนาดรูปภาพด้านใน */
+.photo-frame img {
+    width: 220px; /* ปรับขนาดความกว้างของรูปได้ตามต้องการ */
+    max-width: 100%;
+    height: auto;
+    border: 2px solid #333; /* เส้นขอบรูปด้านใน */
+    object-fit: cover;
+}
